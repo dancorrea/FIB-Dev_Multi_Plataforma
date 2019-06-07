@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MultPlatProject"
+    x:Class="MultPlatProject.App">
+    
+    <!-- Define a página principal/raiz da aplicação -->
+    <Application.MainPage>
+        
+                <TabbedPage Title="Options" Icon="star.png">
+                    <TabbedPage.Children>
+                        <NavigationPage Title="Books" Icon="news.png">
+                            <x:Arguments>
+                                <local:BooksPage />
+                            </x:Arguments>
+                        </NavigationPage>
+                        <NavigationPage Title="Authors" Icon="news.png">
+                            <x:Arguments>
+                                <local:AuthorsPage />
+                            </x:Arguments>
+                        </NavigationPage>
+                    </TabbedPage.Children>
+                </TabbedPage>
+        
+    </Application.MainPage>
+</Application>

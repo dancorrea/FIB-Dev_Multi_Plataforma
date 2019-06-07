@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MultPlatProject"
+    x:Class="MultPlatProject.BooksPage"
+    Title="Books">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GetCommand}" Icon="book.png"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.BindingContext>
+        <local:BooksViewModel RequestFailed="Handle_RequestFailed" /> 
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout
+            HorizontalOptions="FillAndExpand">
+            <Entry 
+                x:Name="TitleEntry"
+                Placeholder="Procurar..."
+                Text="{Binding TitleEntry}"/>
+            <Button Text="Buscar" Command="{Binding GetCommand}"/>
+
+            <ListView ItemsSource="{Binding Books}"
+              IsPullToRefreshEnabled="True"
+              RefreshCommand="{Binding GetCommand}"   
+              IsRefreshing="{Binding IsLoading}">
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <!-- <TextCell Text="{Binding Title}" /> -->
+                        <ImageCell Height="30" ImageSource="{Binding Cover}" Text="{Binding Title}" Detail="{Binding Author.Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
